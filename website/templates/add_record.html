@@ -1,20 +1,145 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="col-md-6 offset-md-3">
-<h1>Add Record</h1>
-<br/>
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-<form method="POST" action="{% url 'add_record' %}">
-	{% csrf_token %}
+    .col-md-6 {
+        margin-top: 50px;
+        position: relative;
+    }
 
-	{{ form.as_p }}
+    .background-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('your-background-image.jpg') center/cover; /* Replace 'your-background-image.jpg' with your image */
+        z-index: -1;
+    }
 
-<br/>
-  <button type="submit" class="btn btn-secondary">Add Record</button>
-   <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    h1 {
+        color: #007bff;
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-</form>
+    form {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    label {
+        color: #555;
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 2px solid #007bff;
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 5px;
+        transition: background-color 0.3s, border-bottom 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        background-color: rgba(255, 255, 255, 1);
+        border-bottom: 2px solid #0056b3;
+    }
+
+    button,
+    a.btn {
+        display: inline-block;
+        padding: 15px 30px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover,
+    a.btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Styling for the "Back" button */
+    a.btn-secondary {
+        padding: 15px 30px; /* Match the size of the "Add Record" button */
+        background-color: #6c757d; /* Change the background color as needed */
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    a.btn-secondary:hover {
+        background-color: #495057; /* Change the hover background color as needed */
+    }
+</style>
+
+<div class="col-md-6 offset-md-3 mx-auto">
+    <h1>Add Record</h1>
+
+    <div class="background-container"></div>
+
+    <form method="POST" action="{% url 'add_record' %}">
+        {% csrf_token %}
+
+        <label for="id_first_name">First Name</label>
+        {{ form.first_name }}
+        
+        <label for="id_last_name">Last Name</label>
+        {{ form.last_name }}
+
+        <label for="id_email">Email</label>
+        {{ form.email }}
+
+        <label for="id_phone">Phone</label>
+        {{ form.phone }}
+
+        <label for="id_address">Address</label>
+        {{ form.address }}
+
+        <label for="id_city">City</label>
+        {{ form.city }}
+
+        <label for="id_state">State</label>
+        {{ form.state }}
+
+        <label for="id_zipcode">Zipcode</label>
+        {{ form.zipcode }}
+
+        <button type="submit" class="btn btn-primary">Add Record</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    </form>
 
 </div>
 

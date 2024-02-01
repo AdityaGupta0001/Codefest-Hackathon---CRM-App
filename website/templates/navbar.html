@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'home' %}">Bug Bash CRM</a>
@@ -37,3 +38,107 @@
     </ul>
   </div>
 </nav>
+=======
+<!-- Vertical Sidebar -->
+<div class="vertical-sidebar" id="sidebar" style="height: 100vh; width: 250px; background-color: #F1F3F6; position: fixed; top: 0; left: 0; overflow-x: hidden; padding-top: 20px;">
+  <a href="{% url 'home' %}" class="sidebar-brand" style="color: #000;">Django CRM</a>
+  
+  <!-- Close Icon -->
+  <span class="close-icon" onclick="closeSidebar()">&#10006;</span>
+
+  <ul class="nav flex-column">
+    {% if user.is_authenticated %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'add_record' %}" style="color: #000;">Add Record</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'logout' %}" style="color: #000;">Logout</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'register' %}" style="color: #000;">Register</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'home' %}" style="color: #000;">Login</a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+
+<!-- Content Area -->
+<div class="content" id="content" style="margin-left: 0; padding: 16px;">
+  <!-- Your main content goes here -->
+</div>
+
+<style>
+  /* Sidebar Styles */
+  .vertical-sidebar {
+    transition: width 0.5s ease;
+    z-index: 1000;
+  }
+
+  .vertical-sidebar:hover {
+    width: 300px;
+  }
+
+  .sidebar-brand {
+    display: block;
+    font-size: 24px;
+    color: #000;
+    padding: 15px 20px;
+    text-decoration: none;
+    border-bottom: 2px solid #000;
+  }
+
+  .nav-item {
+    transition: background-color 0.3s;
+  }
+
+  .nav-item:hover {
+    background-color: #D7DBE2;
+  }
+
+  .nav-link {
+    color: #000;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+  }
+
+  /* Close Icon Styles */
+  .close-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  /* Content Area Styles */
+  .content {
+    transition: margin-left 0.5s;
+  }
+
+  .content:hover {
+    margin-left: 300px;
+  }
+</style>
+
+<script>
+  function closeSidebar() {
+    document.getElementById('sidebar').style.width = '0';
+    document.getElementById('content').style.marginLeft = '0';
+  }
+
+  function openSidebar() {
+    document.getElementById('sidebar').style.width = '250px';
+    document.getElementById('content').style.marginLeft = '250px';
+  }
+
+  document.addEventListener('mousemove', function (event) {
+    if (event.clientX < 10) {
+      openSidebar();
+    }
+  });
+</script>
+>>>>>>> origin/main

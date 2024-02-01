@@ -1,52 +1,81 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
 
+  .card {
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px; /* Add border-radius to the card */
+    overflow: hidden;
+  }
+
+  .card-header {
+    background-color: #7B66FF;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-text {
+    margin-bottom: 15px;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .btn {
+    margin: 0 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+
+  .btn-secondary {
+    background-color: #5FBDFF;
+    color: #fff;
+  }
+
+  .btn-danger {
+    background-color: #FF5151;
+    color: #fff;
+  }
+</style>
 
 <div class="card">
-  <div class="card-header"><strong>
-    	{{ customer_record.first_name }} 
-		{{ customer_record.last_name }}</strong>
+  <div class="card-header">
+    <strong>{{ customer_record.first_name }} {{ customer_record.last_name }}</strong>
   </div>
   <div class="card-body">
 
-
-
-<p class="card-text">
-<strong>Email: </strong>{{ customer_record.email }}</p>
-
-<p class="card-text">
-<strong>Phone: </strong>{{ customer_record.phone }}
-</p>
-
-<p class="card-text">
-<strong>Address: </strong>{{ customer_record.address }}</p>
-
-<p class="card-text">
-<strong>City: </strong>{{ customer_record.city }}</p>
-
-<p class="card-text">
-<strong>State: </strong>{{ customer_record.state }}</p>
-
-<p class="card-text">
-<strong>Zipcode: </strong>{{ customer_record.zipcode }}</p>
-
-<p class="card-text">
-<strong>Create At: </strong>{{ customer_record.created_at }}</p>
-
-<p class="card-text">
-<strong>ID: </strong>{{ customer_record.id }}</p>
+    <p class="card-text"><strong>Email:</strong> {{ customer_record.email }}</p>
+    <p class="card-text"><strong>Phone:</strong> {{ customer_record.phone }}</p>
+    <p class="card-text"><strong>Address:</strong> {{ customer_record.address }}</p>
+    <p class="card-text"><strong>City:</strong> {{ customer_record.city }}</p>
+    <p class="card-text"><strong>State:</strong> {{ customer_record.state }}</p>
+    <p class="card-text"><strong>Zipcode:</strong> {{ customer_record.zipcode }}</p>
+    <p class="card-text"><strong>Create At:</strong> {{ customer_record.created_at }}</p>
+    <p class="card-text"><strong>ID:</strong> {{ customer_record.id }}</p>
     
-    
+    <!-- Button Group for Centered Buttons -->
+    <div class="btn-group">
+      <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+      <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
+      <a href="{% url 'update_record' customer_record.id %}" class="btn btn-secondary">Update Record</a>
+    </div>
+
   </div>
 </div>
-
-<br/><br/>
-<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
-
-<a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
-
-<a href="{% url 'update_record' customer_record.id %}" class="btn btn-secondary">Update Record</a>
-		
 
 {% endblock %}
