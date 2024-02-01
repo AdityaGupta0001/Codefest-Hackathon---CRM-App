@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm, AddRecordForm
-from .models import Record
+from .forms import SignUpForm, AddRecordForm, LeadForm, OpportunityForm
+from .models import Record, Lead, Opportunity
 
 
 def home(request):
@@ -99,3 +99,42 @@ def update_record(request, pk):
 	else:
 		messages.success(request, "You Must Be Logged In...")
 		return redirect('home')
+
+def about(request):
+	return render(request, 'about.html')
+
+def lead_list(request):
+    leads = Lead.objects.all()
+    return render(request, 'lead_list.html', {'leads': leads})
+
+def lead_detail(request, pk):
+    lead = Lead.objects.get(pk=pk)
+    return render(request, 'lead_detail.html', {'lead': lead})
+
+def lead_create(request):
+    if request.method == 'POST':
+        form = LeadForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lead_list')
+    else:
+        form = LeadForm()
+    return render(request, 'lead_form.html', {'form': form})
+
+def opportunity_list(request):
+    opportunities = Opportunity.objects.all()
+    return render(request, 'opportunity_list.html', {'opportunities': opportunities})
+
+def opportunity_detail(request, pk):
+    opportunity = Opportunity.objects.get(pk=pk)
+    return render(request, 'opportunity_detail.html', {'opportunity': opportunity})
+
+def opportunity_create(request):
+    if request.method == 'POST':
+        form = OpportunityForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('opportunity_list')
+    else:
+        form = OpportunityForm()
+    return render(request, 'opportunity_form.html', {'form': form})

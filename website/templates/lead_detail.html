@@ -1,0 +1,11 @@
+<!-- lead_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ lead.name }}</h2>
+  <p>Email: {{ lead.email }}</p>
+  <p>Phone: {{ lead.phone }}</p>
+  <p>Status: {{ lead.status }}</p>
+  <a href="{% url 'lead_list' %}">Back to Lead List</a>
+{% endblock %}

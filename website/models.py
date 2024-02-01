@@ -14,3 +14,21 @@ class Record(models.Model):
 
 	def __str__(self):
 		return(f"{self.first_name} {self.last_name}")
+	
+class Lead(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15)
+    status = models.CharField(max_length=20, default='New')
+
+    def __str__(self):
+        return self.name
+
+class Opportunity(models.Model):
+    lead = models.ForeignKey(Lead, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    close_date = models.DateField()
+    stage = models.CharField(max_length=20, default='Prospect')
+
+    def __str__(self):
+        return f"{self.lead.name}'s Opportunity"

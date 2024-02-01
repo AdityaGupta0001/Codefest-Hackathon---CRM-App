@@ -1,0 +1,13 @@
+<!-- lead_form.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Create New Lead</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+  <a href="{% url 'lead_list' %}">Cancel</a>
+{% endblock %}
