@@ -1,0 +1,5 @@
+# Ignore the virtual environment directory
+virt/
+
+# Ignore environment variable files
+.env
